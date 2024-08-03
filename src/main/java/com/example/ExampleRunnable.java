@@ -4,8 +4,8 @@ public class ExampleRunnable implements Runnable {
 
     private String user;
 
-    private static ThreadLocal<String> userContext
-            = new ThreadLocal<>();
+    private static ScopedValue<String> userContext
+            = ScopedValue.newInstance();
 
     public ExampleRunnable(String user) {
         this.user = user;
@@ -13,9 +13,9 @@ public class ExampleRunnable implements Runnable {
 
     @Override
     public void run() {
-        userContext.set(user);
-        System.out.println("Thread: " + Thread.currentThread().getName()
-                + " User: " + userContext.get());
+        ScopedValue.where(userContext, user).run(
+                () -> System.out.println("Thread: " + Thread.currentThread().getName()
+                        + " User: " + userContext.get()));
     }
 
 
