@@ -2,20 +2,20 @@ package com.example;
 
 public class ExampleRunnable implements Runnable {
 
-    private String user;
+    private Long userId;
 
-    private static ThreadLocal<String> userContext
+    private static ThreadLocal<Long> context
             = new ThreadLocal<>();
 
-    public ExampleRunnable(String user) {
-        this.user = user;
+    public ExampleRunnable(Long userId) {
+        this.userId = userId;
     }
 
     @Override
     public void run() {
-        userContext.set(user);
+        context.set(userId);
         System.out.println("Thread: " + Thread.currentThread().getName()
-                + " User: " + userContext.get());
+                + " User ID: " + context.get());
     }
 
 
