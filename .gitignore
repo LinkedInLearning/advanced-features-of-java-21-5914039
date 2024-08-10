@@ -5,6 +5,7 @@ target/
 
 # IntelliJ
 .idea
+*.iml
 
 ### Eclipse ###
 .apt_generated
