@@ -7,6 +7,7 @@ import java.lang.foreign.Linker;
 import static java.lang.foreign.ValueLayout.ADDRESS;
 import static java.lang.foreign.ValueLayout.JAVA_LONG;
 
+
 public class Main {
 
     public static void main(String[] args) throws Throwable {
@@ -16,18 +17,22 @@ public class Main {
 
             final var symbolLookup = linker.defaultLookup();
 
-            final var memorySegment = symbolLookup.find("strlen").orElseThrow();
+            // Create a memory segment for the atoi function here
+            // Use the find method on the symbolLookup object to find the atoi function
+            final var memorySegment = symbolLookup.find("atoi").orElseThrow();
 
             final var functionDescriptor =
                     FunctionDescriptor.of(JAVA_LONG, ADDRESS);
 
             final var methodHandle = linker.downcallHandle(memorySegment, functionDescriptor);
 
-            final var segmentAllocator = arena.allocateFrom("Hello world");
+            final var segmentAllocator = arena.allocateFrom("25");
 
             final var result = (long) methodHandle.invokeExact(segmentAllocator);
 
-            System.out.println(result);
+            System.out.println("Object value " + result);
+            System.out.println("Object type: " + ((Object)result).getClass().getSimpleName());
+
         }
 
     }
