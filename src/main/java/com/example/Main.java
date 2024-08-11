@@ -3,8 +3,10 @@ package com.example;
 import java.lang.foreign.Arena;
 import java.lang.foreign.FunctionDescriptor;
 import java.lang.foreign.Linker;
+import java.lang.foreign.MemorySegment;
 
-import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.ValueLayout.ADDRESS;
+import static java.lang.foreign.ValueLayout.JAVA_LONG;
 
 public class Main {
 
@@ -15,7 +17,9 @@ public class Main {
 
             final var symbolLookup = linker.defaultLookup();
 
-            final var memorySegment = symbolLookup.find("atoi").orElseThrow();
+            // Create a memory segment for the atoi function here
+            // Use the find method on the symbolLookup object to find the atoi function
+            final MemorySegment memorySegment = null;
 
             final var functionDescriptor =
                     FunctionDescriptor.of(JAVA_LONG, ADDRESS);
