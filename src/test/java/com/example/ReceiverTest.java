@@ -18,7 +18,7 @@ class ReceiverTest {
         final var  publicKey = keyPair.getPublic();
         final var  privateKey = keyPair.getPrivate();
 
-        final var encapsulated = new Sender().getKey(publicKey);
+        final var encapsulated = new Sender().getEncapsulated(publicKey);
         final var receiversKey = new Receiver().getKey(encapsulated, privateKey);
 
         assertArrayEquals(encapsulated.key().getEncoded(), receiversKey);

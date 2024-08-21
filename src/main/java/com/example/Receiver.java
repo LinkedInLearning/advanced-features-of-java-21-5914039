@@ -1,17 +1,19 @@
 package com.example;
 
-import javax.crypto.DecapsulateException;
 import javax.crypto.KEM;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 public class Receiver {
 
-    byte[] getKey(KEM.Encapsulated encapsulated, java.security.PrivateKey privateKey) throws NoSuchAlgorithmException, InvalidKeyException, DecapsulateException {
-        final var receiversKem = KEM.getInstance("DHKEM");
-        final var receiver = receiversKem.newDecapsulator(privateKey);
-        final var receivedSecretKey = receiver.decapsulate(encapsulated.encapsulation());
-        return receivedSecretKey.getEncoded();
+    byte[] getKey(KEM.Encapsulated encapsulated, java.security.PrivateKey privateKey) {
+        // Create a new instance of the KEM with the algorithm name "DHKEM"
+
+        // Create a new Decapsulator using the private key
+
+        // Decapsulate the encapsulated key
+
+        // Return the encoded secret key
+
+        return new byte[0];
     }
 
 
