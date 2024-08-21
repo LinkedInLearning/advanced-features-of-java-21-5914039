@@ -7,11 +7,10 @@ import java.security.PublicKey;
 
 public class Sender {
 
-    byte[] getKey(PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException {
+    public KEM.Encapsulated getEncapsulated(PublicKey publicKey) throws NoSuchAlgorithmException, InvalidKeyException {
         final var sendersKem = KEM.getInstance("DHKEM");
         final var sender = sendersKem.newEncapsulator(publicKey);
-        final var encapsulated = sender.encapsulate();
-        return encapsulated.key().getEncoded();
+        return sender.encapsulate();
     }
 
 }
